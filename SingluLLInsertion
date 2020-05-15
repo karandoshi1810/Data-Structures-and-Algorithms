@@ -1,0 +1,172 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<memory.h>
+
+struct insertion{
+	int data;
+	struct insertion *next;
+};
+struct insertion *first = NULL, *head = NULL, *temp = NULL;
+void menu();
+void nodes(int);
+void createLL();
+void insertionBeginning();
+void insertionEmpty();
+void insertionEnd();
+void printLL();
+int main(){
+	int choice=0,totalNodes=0;
+	do{
+		system("cls");
+		menu();
+
+		printf("Enter your choice:");
+		scanf("%d",&choice);
+
+		switch(choice){
+
+			case 1:	printf("Enter total number of nodes:");
+					scanf("%d",&totalNodes);
+					nodes(totalNodes);
+					break;
+			case 2: insertionBeginning();
+					break;
+
+			case 3: insertionEmpty();
+					break;
+
+			case 4: insertionEnd();
+					break;
+
+			case 5: printLL();
+					break;
+
+			default: printf("Thanks for using this program");
+					 break;
+
+		}
+		getch();
+	}while(choice>0 && choice<6);
+	return 0;
+
+}
+
+void menu(){
+	printf("******************Menu******************");
+	printf("\n");
+	printf("->Enter 1 for creation of a singly linked list\n");
+	printf("->Enter 2 for insertion at beginning\n");
+	printf("->Enter 3 for insertion in empty linked list\n");
+	printf("->Enter 4 for insertion at the end\n");
+	printf("->Enter 5 for printing the linked list\n");
+}
+
+void nodes(int node){
+	while(node>0){
+		createLL();
+		node--;
+	}
+}
+
+void createLL(){
+
+	int node_data=0;
+	temp = (struct insertion*)malloc(sizeof(struct insertion)*1);
+	printf("Enter your data:");
+	scanf("%d",&node_data);
+	temp->data = node_data;
+	temp->next = NULL;
+    head = first;
+	if(first==NULL){
+		first=temp;
+		first->next = NULL;
+	}
+	else{
+		head = first;
+		while(head->next!=NULL){
+			head=head->next;
+		}
+
+		head->next=temp;
+		temp->next = NULL;
+	}
+	printf("Updated Linked List:\n");
+	printLL();
+}
+
+void insertionBeginning(){
+	int node_data=0;
+	temp = (struct insertion*)malloc(sizeof(struct insertion)*1);
+	printf("Enter your data:");
+	scanf("%d",&node_data);
+	temp->data = node_data;
+	temp->next = NULL;
+	if(first == NULL){
+		first = temp;
+	}
+	else{
+		temp->next = first;
+		first = temp;
+	}
+	printf("Updated linked list is\n");
+	printLL();
+}
+void insertionEmpty(){
+	int node_data=0;
+	temp = (struct insertion*)malloc(sizeof(struct insertion)*1);
+	head = first;
+	if(first != NULL){
+		while(head!=NULL){
+			temp = head;
+			head = head->next;
+			free(temp);
+		}
+		free(first);
+		printf("Enter your data:");
+		scanf("%d",&node_data);
+		temp->data = node_data;
+		temp->next = NULL;
+		first = temp;
+	}
+	else{
+		printf("Enter your data:");
+		scanf("%d",&node_data);
+		temp->data = node_data;
+		temp->next = NULL;
+		first = temp;
+	}
+	printLL();
+}
+
+void insertionEnd(){
+	int node_data=0;
+	printf("Enter your data:");
+	scanf("%d",&node_data);
+	temp = (struct insertion*)malloc(sizeof(struct insertion)*1);
+	temp->data = node_data;
+	temp->next = NULL;
+	head = first;
+	if(first == NULL){
+		first = temp;
+	}
+	else{
+		while(head->next!=NULL){
+			head = head->next;
+		}
+		head->next=temp;
+	}
+	printLL();
+}
+void printLL(){
+	head = first;
+	if(first == NULL){
+		printf("There are no element in linked list\n");
+		exit(0);
+	}
+	else{
+		while(head!=NULL){
+			printf("%d->",head->data);
+			head = head->next;
+		}
+	}
+}

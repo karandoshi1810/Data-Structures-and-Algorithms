@@ -1,0 +1,46 @@
+#include<stdio.h>
+#inclue<malloc.h>
+#include<stdlib.h>
+struct linkedlist{
+	int data;
+	struct linkedlist *next=NULL;
+};
+struct linkedlist *head=NULL,*start=NULL,*temp=NULL;
+
+int main(){
+	int nodes=0,node_data=0;
+	printf("Enter total number of nodes:");
+	scanf("%d",&nodes);
+	
+	start=head;
+	while(nodes!=0){
+		node_data=0;
+		temp = (struct linkedlist*) malloc (sizeof(struct linkedlist)*1);
+		
+		printf("Enter your data:");
+		scanf("%d",&node_data);
+		temp->data = node_data;
+		temp->next = NULL;
+		
+		
+		if(head==NULL){
+			head = temp;
+		}
+		
+		else{
+			start = head;
+			while(start->next!=NULL){
+				start=start->next;
+			}
+			start->next=temp;
+		}
+		nodes--;
+	}
+	
+	start=head;
+	while(start!=NULL){
+		printf("%d\n",start->data);
+		start=start->next;
+	}
+	return 0;
+	}

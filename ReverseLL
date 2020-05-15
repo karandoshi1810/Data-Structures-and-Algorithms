@@ -1,0 +1,106 @@
+#include<stdio.h>
+#include<memory.h>
+#include<stdlib.h>
+
+struct recusrion{
+	int data;
+	struct recusrion *next;
+};
+
+struct recursion *first = NULL, *head = NULL, *temp = NULL;
+struct newLL{
+	int datan;
+	struct newLL *nextn;
+};
+
+struct newLL *firstn = NULL, *headn = NULL, *tempn = NULL;
+void recusrion();
+void createLL(int);
+void printLL();
+void printLLr();
+
+int main(){
+	int totalNodes=0;
+	printf("ENter total number of nodes:");
+	scanf("%d",&totalNodes);
+	createLL(totalNodes);
+	headn = firstn;
+	recursion();
+	return 0;
+}
+
+void createLL(int nodes){
+	while(nodes>0){
+		temp = (struct recursion*)malloc(sizeof(recursion)*1);
+		int node_data=0;
+		printf("Enter your data:");
+		scanf("%d",&node_data);
+	
+		temp->data = node_data;
+		temp->next = NULL;
+		head = first;
+			if(first == NULL){
+			first = temp;
+			}
+			else{
+			while(head->next != NULL){
+			head = head->next;
+			}
+			head->next = temp;
+		}
+			nodes--;
+	}
+}
+
+void recursion(){
+	if(head->next!=NULL){
+		head = head->next;
+		temp = recursion();
+	}
+	else{
+		if(firstn == NULL){
+			firstn = temp;
+		}
+		else{
+			while(headn->nextn!= NULL){
+				headn = headn->nextn;
+			}
+			headn->nextn = temp;
+			temp->nextn = NULL;
+		}
+	}
+	printf("Old linked list is\n");
+	printLL();
+	printf("Reversed linked list is\n");
+	printLLr();
+}
+
+void printLL(){
+	if(first == NULL){
+		printf("No elements in the linked list");
+		exit(0);
+	}
+	else{
+		while(head != NULL){
+			printf("%d",head->data);
+			head = head->next;
+		}
+		
+	}
+	printf("\n");
+}
+
+void pritLLr(){
+	headn = firstn;
+	if(firstn == NULL){
+		printf("Please enter some elements in the linked list");
+		exit(0);
+	}
+	else{
+		while(headn->!=NULL){
+			printf("%d",headn->datan);
+			headn = headn->nextn;
+		}
+	}
+	printf("\n");
+}

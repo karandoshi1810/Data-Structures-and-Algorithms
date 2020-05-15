@@ -1,0 +1,107 @@
+#include<stdio.h>
+#include<memory.h>
+#include<stdlib.h>
+struct stack{
+	int data;
+	struct stack *next;
+};
+struct stack *top = NULL,*temp = NULL;
+
+void menu();
+void push();
+void pop();
+void peek();
+void display();
+
+int main(){
+	int choice=0;
+	do{
+		system("cls");
+		menu();
+		printf("\nEnter your choice:");
+		scanf("%d", &choice);
+		switch(choice){
+			case 1: push();
+					break;
+
+			case 2: pop();
+					break;
+
+			case 3: peek();
+					break;
+
+			case 4: display();
+					break;
+
+			default: printf("Thank you for using this program");
+					 break;
+		}
+		getch();
+	}while(choice>0 && choice<5);
+	return 0;
+}
+
+void menu(){
+	printf("=========================================================\n");
+	printf("                          Menu                           \n");
+	printf("=========================================================\n");
+	printf("->Enter 1 for push operation\n");
+	printf("->Enter 2 for pop operation\n");
+	printf("->Enter 3 for peek operation\n");
+	printf("->Enter 4 for display operation\n");
+	printf("=========================================================");
+}
+
+void push(){
+	int value=0;
+	printf("Enter value:");
+	scanf("%d",&value);
+	temp = (struct stack*)malloc(sizeof(struct stack)*1);
+	temp->data = value;
+	temp->next = NULL;
+	if(top == NULL){
+		top = temp;
+	}
+	else{
+		temp->next = top;
+		top = temp;
+	}
+	display();
+}
+
+void pop(){
+	if(top == NULL){
+		printf("Stack is empty");
+	}
+	else{
+		printf("Before Deletion\n");
+		display();
+		temp = top;
+		top = top->next;
+		free(temp);
+		printf("\nAfter deletion\n");
+		display();
+	}
+}
+
+void peek(){
+	if(top == NULL){
+		printf("Stack is empty");
+	}
+	else{
+		printf("Peek element is:%d\n",top->data);
+	}
+}
+
+void display(){
+	temp = top;
+	if(top == NULL){
+		printf("Stack is empty");
+	}
+	else{
+		while(temp != NULL){
+			printf("->%d",temp->data);
+			temp = temp->next;
+		}
+	}
+}

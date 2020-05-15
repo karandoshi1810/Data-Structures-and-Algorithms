@@ -1,0 +1,94 @@
+#include<stdio.h>
+#include<memory.h>
+#include<stdlib.h>
+int SIZE = 5,top = -1, stack[SIZE];
+void menu();
+void push();
+void pop;
+void peek();
+void display();
+int main(){
+	int choice=0;
+	do{
+		system("cls");
+		menu();
+		printf("\nEnter your choice:");
+		scanf("%d", &choice);
+		switch(choice){
+			case 1: push();
+					break;
+					
+			case 2: pop();
+					break;
+					
+			case 3: peek();
+					break;
+					
+			case 4: display();
+					break;
+					
+			default: printf("Thank you for using thid program");
+					 break;
+		}
+		getch();
+	}while(choice>0 && choice<5);
+	return 0;
+}
+
+void menu(){
+	printf("=========================================================");
+	printf("                          Menu                           ");
+	printf("=========================================================");
+	printf("->Enter 1 for push operaton");
+	printf("->Enter 2 for pop operaton");
+	printf("->Enter 3 for peek operaton");
+	printf("->Enter 4 for display operaton");
+	printf("=========================================================");
+}
+
+void push(){
+	int value=0,i=0;
+	if(top== size-1){
+		printf("Stack Overflow");
+	}
+	else{
+		top++;
+		printf("Enter your value:");
+		scanf("%d",&value);
+		stack[top] = value;
+	}
+	display();
+}
+
+void pop(){
+	int value=0;
+	if(top == -1){
+		printf("Stack is empty");
+	}
+	else{
+		value = stack[top];
+		top--;
+		printf("Poped value is %d",value);
+	}
+	display();
+}
+
+void peek(){
+	if(top == -1){
+		printf("Stack is empty");
+	}
+	else{
+		printf("%d", stcak[top]);
+	}
+}
+
+void display(){
+	if(top == -1){
+		printf("Stack is empty");
+	}
+	else{
+		for(i=top;i>=0;i--){
+			printf("%d", stack[i]);
+		}
+	}
+}

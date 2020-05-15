@@ -1,0 +1,228 @@
+#include<stdio.h>
+#include<memory.h>
+#include<stdlib.h>
+
+struct deletion{
+	int data;
+	struct deletion *next;
+};
+struct deletion *first = NULL, *head = NULL, *temp = NULL;
+
+void menu();
+void createLL(int);
+void deleteFirst();
+void deleteOne();
+void deleteBefore();
+void deleteAfter();
+void deletLast();
+void printLL();
+
+int main(){
+	int choice=0,totalNodes=0;
+	do{
+		system("cls");
+		menu();
+		printf("\nEnter your choice:");
+		scanf("%d",&choice);
+		struct(choice){
+			case 1: printf("Enter total number of nodes:");
+					scanf("%d",&totalNodes);
+					createLL(totalNodes);
+					break;
+					
+			case 2: deleteFirst();
+					break;
+					
+			case 3: deleteOne();
+					break;
+					
+			case 4: deleteBefore();
+					break;
+					
+			case 5: deleteAfter();
+					break;
+					
+			case 6: deletLast();
+					break;
+					
+			case 7: printLL();
+					break;
+					
+			default: printf("Thank you for using this program:");
+					 break;
+		}
+		getch();
+	}while(choice>0 && choice<8);
+	return 0;
+}
+
+void menu(){
+	printf("******************Menu******************");
+	printf("\n");
+	printf("->Enter 1 for creation of linked list\n");
+	printf("->Enter 2 for deletion of first node\n");
+	printf("->Enter 3 for deleting any one node\n");
+	printf("->Enter 4 for deletion of a node before a particular node\n");
+	printf("->Enter 5 for deletion of a node after a particular node\n");
+	printf("->Enter 6 for deletion of last node\n");
+	printf("->Enter 7 for printing the linked list");
+	printf("****************************************");
+}
+
+void createLL(int nodes){
+    while(nodes>0){
+        int node_data=0;
+        temp = (struct insertion*)malloc(sizeof(struct insertion)*1);
+        printf("enter your data:");
+        scanf("%d",&node_data);
+        temp->data = node_data;
+        temp->next = NULL;
+        //head = first;
+        if(first == NULL){
+            first = temp;
+        }
+        else{
+            head = first;
+            while(head->next != NULL){
+                head = head->next;
+            }
+            head->next = temp;
+            temp->next = NULL;
+        }
+        nodes--;
+    }
+    temp->next=first;
+    printf("Updated Linked List is\n");
+    printLL();
+}
+
+void deleteFirst(){
+	if(first == NULL){
+		printf("No elements in Linked List");
+		menu();
+	}
+	else{
+		head = first;
+		if(first->next==NULL){
+			free(first);
+			printf("Linked list emptied");
+			exit(0);
+		}
+		else{
+			while(head->next != first){
+				head = head->next;
+			}
+			temp = head->next;
+			head->next = temp->next;
+			free(temp);
+			head = head->next;
+			first = head;
+		}
+	}
+	printf("Updated linked list is\n");
+	printLL();
+}
+
+void deleteOne(){
+	int node_value=0,flag=0;
+	printf("Enter value which you want to delete:");
+	scanf("%d",&node_value);
+	head = first;
+	if(first->data == node_value){
+		temp = first;
+		temp->next = NULL;
+		first = first->next;
+		free(temp);
+	}
+	while(head->next != first){
+		if(head->next->data == node_value){
+				flag = 1;
+				temp = head->next;
+				head->next = temp->next;
+				free(temp);
+				printf("Updated Linked List\n");
+				printLL();
+				break;
+		}
+	}
+	if(flag == 0){
+		printf("value not found in Linked list enter valid value");
+		menu();
+	}
+}
+
+void deleteBefore(){
+	int node_pos=0;
+	
+	printf("Enter node position before whic you want to delete a node:");
+	scanf("%d",&node_pos);
+	if(node_pos<=0){
+		printf("Enter node position greater than 1");
+	}
+	else if(node_pos==1){
+		temp = first;
+		first = first->next;
+		free(temp);
+	}
+	else if(node_pos == 2){
+		temp = first->next;
+		first->next = temp->next;
+		free(temp);
+	}
+	else{
+		head = first;
+		while(pos!=node_pos-3){
+			head = head->next;
+			pos++;
+		}
+		temp = head->next;
+		head->next = temp->next;
+		free(temp);
+		
+	}
+}
+
+void deleteAfter(){
+	int node_pos=0,pos=0;
+	printf("Enter position after which you want to insert a node:");
+	scanf("%d",&node_pos);
+	if(node_pos<=0){
+		printf("Plese enter value of node greater than 0");
+		deleteAfter();
+	}
+	else{
+		head = first;
+		if(node_pos == 1){
+			temp = first->next;
+			first->next = temp->next;
+			free(temp);
+		}
+		else{
+			while(pos != node_pos-2){
+				pos++;
+				head = head->next;
+			}
+			temp = head->next;
+			head->next = temp->next;
+			free(temp);
+		}
+	}
+	printf("Updated LL is\n");
+	printLL();
+}
+
+void printLL(){
+    head = first;
+    if(first == NULL){
+        printf("No elements in LL");
+        exit(0);
+    }
+    else{
+
+        do{
+            printf("%d->",head->data);
+			head = head->next;
+        }while(head!=first);
+
+	}
+}

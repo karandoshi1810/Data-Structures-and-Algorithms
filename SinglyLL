@@ -1,0 +1,99 @@
+#include<stdio.h>
+#include<memory.h>
+#include<stdlib.h>
+
+struct singlyLL{
+	int data;
+	struct singlyLL *next;
+};
+struct singlyLL *first=NULL,*head = NULL, *temp = NULL;
+
+int main(){
+	int choice=0,search_val=0,i=0,flag = 0;
+    do{
+		printf("\n=====================Menu======================\n");
+		printf("->Enter 1 for creating linked list\n");
+		printf("->Enter 2 for printing linked list\n");
+		printf("->Enter 3 for searching in linked list\n");
+		printf("Enter your choice:");
+		scanf("%d",&choice);
+
+
+	if(choice == 1){
+		int nodes,data;
+		printf("Enter total number of nodes:");
+		scanf("%d",&nodes);
+
+		while(nodes>0){
+			printf("Enter your data:");
+			scanf("%d",&data);
+			temp = (struct singlyLL*)malloc(sizeof(struct singlyLL)*1);
+			temp->data = data;
+			temp->next = NULL;
+            head = first;
+			if(first == NULL){
+				first = temp;
+			}
+
+
+
+			else{
+				while(head->next != NULL){
+					head =head->next;
+				}
+				head->next = temp;
+			}
+			nodes--;
+		}
+		head = first;
+		printf("Your linked list is ready\n");
+
+		while(head != NULL){
+			printf("%d->",head->data);
+			head = head->next;
+		}
+	}
+	else if(choice == 2){
+        head = first;
+		if(first == NULL){
+			printf("There are no elements in linked list");
+			exit(0);
+		}
+		else{
+			while(head != NULL){
+			printf("%d->",head->data);
+			head = head->next;
+			}
+		}
+	}
+	else if(choice == 3){
+	    flag = 0;
+		if(first == NULL){
+			printf("There are no elements in linked list");
+			exit(0);
+		}
+		else{
+			printf("Enter search value:");
+			scanf("%d",&search_val);
+			head = first;
+			while(head->next != NULL){
+				i++;
+				if(head->data == search_val){
+					printf("%d value found at %dth place",search_val,i);
+					flag=1;
+					break;
+				}
+				head = head->next;
+			}
+
+			if(flag == 0){
+				printf("Requested element not found in linked list");
+			}
+		}
+	}
+	else{
+		printf("Thanks for using this program");
+	}
+  }while(choice>0 && choice<4);
+	return 0;
+}

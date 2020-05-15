@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<malloc.h>
+#include<stdlib.h>
+
+struct doublyLL{
+	int data;
+
+	struct doublyLL *next,*prev;
+};
+struct doublyLL *first=NULL,*head=NULL,*temp=NULL;
+
+void nodes(int);
+void createLL();
+void printLL();
+
+int main(){
+	int noOfNodes;
+	printf("Enter total number of nodes:");
+	scanf("%d",&noOfNodes);
+	nodes(noOfNodes);
+	return 0;
+}
+
+void nodes(int node){
+	while(node>0){
+		createLL();
+		node--;
+	}
+}
+
+void createLL(){
+
+	int node_data=0;
+	temp = (struct doublyLL*) malloc (sizeof(struct doublyLL)*1);
+	printf("Enter your data:");
+	scanf("%d",&node_data);
+	temp->data = node_data;
+	temp->next = NULL;
+	temp->prev=NULL;
+    head = first;
+	if(first==NULL){
+		first=temp;
+		first->next = NULL;
+		first->prev = NULL;
+	}
+	else{
+		head = first;
+		while(head->next!=NULL){
+			head=head->next;
+		}
+
+		head->next=temp;
+		temp->prev = head;
+		temp->next = NULL;
+	}
+	printLL();
+}
+
+void printLL(){
+    int i=1;
+	head = first;
+	while(head!=NULL){
+		printf("%d node is %d\n",i,head->data);
+		head = head->next;
+		i++;
+	}
+}
