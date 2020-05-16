@@ -1,0 +1,107 @@
+#include<stdio.h>
+#include<malloc.h>
+#include<stdlib.h>
+
+struct queue{
+	int data;
+	struct queue *next ;
+};
+struct queue *first = NULL, *head = NULL, *rear = NULL, *front = NULL, *temp = NULL;
+int COUNT=0;
+void menu();
+void enqueue();
+void dequeue();
+void peek();
+void display();
+int main(){
+	int choice;
+	do{
+		system("cls");
+		menu();
+		printf("Enter your operation:");
+		scanf("%d",&choice);
+		switch(choice){
+			case 1: if(COUNT <SIZE-1){
+						enqueue();
+						COUNT++;
+						break;
+					}
+					else{
+						printf("Queue overflowed");
+						menu();
+					}
+					
+			case 2: if(COUNT>0){
+						dequeue();
+						COUNT--;
+						break;
+					}
+					else{
+						printf("No elements in queue");
+						menu();
+					}
+					
+			case 3: if(count>0){
+						peek();
+						break;
+					}
+					else{
+						printf("No values in queue");
+						menu();
+					}
+			case 4: display();
+					break;
+					
+			default: printf("Thank you for using this program");
+					 break;
+		}
+	}while(choice>0 && choice<5);
+	return 0;
+}
+
+void menu(){
+	printf("=========================================================\n");
+	printf("                          Menu                           \n");
+	printf("=========================================================\n");
+	printf("->Enter 1 for enqueue operation\n");
+	printf("->Enter 2 for dequeue operation\n");
+	printf("->Enter 3 for peek operation\n");
+	printf("->Enter 4 for display operation\n");
+	printf("=========================================================");
+}
+
+void enqueue(){
+	int node_value=0;
+	printf('Enter your cdata");
+	scanf("%d",&choice);
+	temp = (struct queue*)malloc(sizeof(struct queue)*1);
+	temp->data = node_value;
+	temp->next = NULL;
+	if(front == NULL){
+		front = temp;
+		rear = temp;
+	}
+	else{
+		rear->next = temp;
+		rear++;
+	}
+}
+
+void dequeue(){
+	temp = front;
+	front = front->next;
+	free(temp);
+	display();
+}
+
+void peek(){
+	printf("%d\n",front->data);
+}
+
+void display(){
+	head = front;
+	while(head!= NULL){
+		printf("%d",head->data);
+		head = head->next;
+	}
+}
