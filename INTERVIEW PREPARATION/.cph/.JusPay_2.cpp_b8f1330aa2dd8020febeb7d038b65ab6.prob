@@ -1,0 +1,1 @@
+{"name":"Local: JusPay_2","url":"e:\\KARAN-ICT\\KARAN DOSHI\\INTERVIEW PREPARATION\\JusPay_2.cpp","tests":[{"id":1625307844834,"input":"4\n2\n5\n7\n9\n4\n2 9\n7 2\n7 9\n9 5\n7\n9","output":"2 7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\KARAN-ICT\\KARAN DOSHI\\INTERVIEW PREPARATION\\JusPay_2.cpp","group":"local","local":true}

@@ -1,0 +1,123 @@
+-------------------------------------------------------------------------
+	      Coursera Course: Interactivity with Javascript
+Name:Karan Doshi					Topic:Notes
+Roll No:24
+For more refrence: https://codepen.io/collection/nLPkgP/
+-------------------------------------------------------------------------
+=>Week-1->Lecture-1
+Docuument Object Model: Every page acts as a tree, in which every node
+has one parent and possibly many children. The children are head and body
+etc. In body there can be 3 divisions which further have two divisons and
+one of them conatins paragraph and so on.
+->Accessing DOM is done using API(Application Programming Interface).
+-------------------------------------------------------------------------
+=>Week-1->Lecture-2
+			  *DOM Objects/Elements*
+Document: Root of the page.
+Element: Divisions, Images, Links etc are the elements of the tree and can
+be accessed using APIs.
+Attribute: every element in the document has one or other attribute which
+will describe the element like height, eidth, background-color etc.
+Eg of API: document.getElementById()
+	   document.getElementsByClassName()
+	   element.innerHTML
+-------------------------------------------------------------------------
+=>Week-1->Lecture-3
+			  *What Javascript can do*
+->Read and wite HTML Elements
+->React to events(keyboard, mouse events etc)
+->Validate data
+->Detect the visitor's browser
+->Create Cookie
+->Javascript does not have built in print function.
+So printing is doen using:
+	->alert box
+	->prompt box
+	->document.write()
+	->innerHTML()
+	->console.log()
+->If we want to write directly to the page then document.write() is used.
+Eg:
+	<script>document.write("Hello World");</script>
+->Using document.write() is not preferred using, and many other fuctions
+like inner.HTML are used, like element.innerHTML/paragraph.innerHTML()
+->While using id for a html element, use distinct id for every element.
+It needs to be done because Javascript expects this, it thinks that the
+id we are using in API is only on ein the whole documment.
+
+->Console.log():It writes the data to the console of the browser, which 
+is not popped to user just like alert or prompt.
+<script>console.log("Hello World");</script>
+->Console also contains debugging information of HTML,CSS,JS.
+-------------------------------------------------------------------------
+=>Week-1->Lecture-4
+				*Variables*
+->Data is stored in variables. 
+->Syntax: var(keyword) name; 
+->A variable can have letters,digits,_,$ in its name.
+->It cannot start with a digit.
+->Variables are case sensitive i.e. "Name" and "name" are treated as 
+different entities.
+->Variable name should be mnemonic(meaningful).
+
+*Date():This function provides current date and time
+Javascript assigns value "null" to any variable whose value is not 
+specified by user.
+
+
+ki hum kis prakar se javascript k upyog se hamare webpage ko zyada interactive bana sakte hai
+Javascript k bahut sare upyog hai, lekin hum vastav mai dhyan kendrit karenge
+Aaj me aapko javascript programming bhasha se parichit karwaungi
+-------------------------------------------------------------------------
+=>Week-1->Lecture-5
+				 *Datatypes*
+1)Number: Numerical Values(with or without decimal)
+2) String: It is collection in characters(letter,numbers,punctuation)
+   To create a string use a quotes(").
+3)Boolean: In programming a boolean value is one which is either true 
+  or false.
+4)Object: Some times the variables are more complex. A node in DOM a good
+  example of example:
+  var topic = document.getElementById("ID").
+5)Array:Array store multiple value using a variable name,and an index
+  for each element in the array.
+  Eg: var links=document.getElementsByTagName('a');
+      document.write(links[0]);
+-------------------------------------------------------------------------
+=>Week-1->Lecture-6
+			*Operators andExpressions*
+Statements: Expressions produce values. The lines we write in editor 
+are called statements.
+1)Assignment Operators:=
+2)Arithmetic Operators:=+,-,*,/,%
+3)More Operators:=Increment(++),Decrement(--),+=
+4)String Operators:=Concatanation(+)
+5)Boolean Operators:==,!=,>,>=.<,<=
+6)Logical Operators:=&&,||,!,==,===,!==
+-------------------------------------------------------------------------
+=>Week-2->Lecture-1
+				*Functions*
+->Functions are bits of codes that one can reuse. It has speical syntax.
+Syntax: function functionName(parameters){
+code you want to run
+}
+Eg without parameters: 
+function greetings(){
+  alert("Hello");
+}
+Eg with parameters: 
+function greetings(name){
+  alert("Hello"+name);
+}
+
+->Declaring a function doesn't actually do anything. The function needs
+to be "called".
+->Parameters: Sometimes functions need some information in order to 
+perform its function. The names of the parsameters are not important as 
+long as as you are consistent.
+Return Values: Some function eturn values. There values can be used in 
+assignment statements or conditional expression
+->Review of functions: Use inbuilt functions whenever possible. When you
+need to write your own function, try not to be too specific regarding
+values of variables, pArameters etc.Function paramaeters can have any 
+names.

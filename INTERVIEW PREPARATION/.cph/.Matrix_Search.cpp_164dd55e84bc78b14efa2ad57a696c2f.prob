@@ -1,0 +1,1 @@
+{"name":"Local: Matrix_Search","url":"e:\\KARAN-ICT\\KARAN DOSHI\\INTERVIEW PREPARATION\\Matrix_Search.cpp","tests":[{"id":1610031117061,"input":"3 4\n1 2 3 4\n5 6 7 8\n9 10 11 12\n11","output":"Found"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\KARAN-ICT\\KARAN DOSHI\\INTERVIEW PREPARATION\\Matrix_Search.cpp","group":"local","local":true}

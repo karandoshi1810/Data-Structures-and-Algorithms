@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1626096461 source:e:\karan-ict\karan doshi\interview preparation\entrycode.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<string.h>
+

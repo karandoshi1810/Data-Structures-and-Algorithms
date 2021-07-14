@@ -1,0 +1,196 @@
+---------------------------------------------------------------------------------------------	
+|			Coding Interview Questions:Narsimha Karumanchi book notes           |
+---------------------------------------------------------------------------------------------
+
+Name:Karan Doshi					      			   Course:ICT
+Roll-No:24						     			  Section:TK1
+Date:07-09-2020 					     			  Day: Monday
+					Unit-1
+			  	Programming Basics
+->'&' is termed as address of variable which gives returns the address of the variable. The
+  return type is int as address cannot be floating point number.
+   Just like sizeof returns the size of a variable in bytes.
+->Two types of variables are there:
+  i)System Defined/Predefined/Primitive(int,float etc.) datatypes
+  ii)User defined datatypes. "typedef" is used to declare such variables.
+->Abstract Data Types consists two parts:
+  i)Decleration of data
+  ii)Declerations of operations to be performed.
+  >Example of ADT(Abstract Data Types) include: Trees, Graphs,Stacks, Queues, Binary Tree,
+   Dictionaries,Disjoint Sets,Hash Tables and so on.
+->Computer mempry can be considered as an array of bytes. Each location is identified by an 
+  address. And the datatype of address is integer,because address cannot be floating point
+  number.
+->When a variable is declared by user then CPU allocates contiguous block of memory.
+->Pointers: Pointers are variables which can store address of another variables as their 
+            values.
+	    =>Decleration: dataType *pointer name;
+	      for eg: int *ptr;
+		      float *ptr1;
+		      char *ptr2;
+		      void *ptr3;
+            =>Void pointer can store any type of data. Its disadvantage is that it cannot be
+              derefrenced, because it does points to any specific data type, and compiler.
+	    =>Another limitation of void pointers is that we cannot perform arithmetic on 
+              them, since the compiler cannot know how many bytes ahead the next variable 
+              is located. So void pointers can only be used to keep addresses that we have 
+              to convert later on to a specific pointer type, before using them.derefrences 
+              the pointer by the contigious memory block allocated to a pointer.
+	    =>A pointer can store data only of its declared datatype, in this case it can 
+              store only int values.
+	    =>The size of pointer is always 2/4 bytes depending upon the architecture of the
+	      machine. If it is 32 bit then 2 bytes and in 64 bit it is 4 bytes.
+	    =>Initialization of pointer can be done in following way:
+	      int* ptr/ *ptr/* ptr=&variable;
+	      ptr = &variable;
+	    =>The derefrencing operator '*' is used to access the value of the address
+	      in the pointer. The '*' used while declaring pointer is different than the one
+              used for deferrencing pointer. The first one tells compiler that a pointer is 
+	      declared over here and the second one tells that value of the variable needs
+   	      to be accessed.
+	    =>As we know that the value of a pointer is an address so it can be printed 
+              in following manner:
+              printf("%d",ptr);
+	    =>If we want the value that is stored at the location, which is stored in the 
+ 	      pointer then derefrencing operator is used. We can use it like this:
+	      printf("%d",*ptr);
+	    =>The address of a pointer can be printed in the following way:
+	      printf("%d",&ptr);
+	    =>We can manipulate the value of the stored data in following way:
+	      *ptr = 25;
+	      printf("%d",x);
+	      printf("%d",*ptr);
+	    =>Just like variable arithmetic, there is pointer arithmetic:Refer topic 1.6.3-
+	      1.6.4.
+	    =>Pointer cannot only store address of memory allocated variables, it can also
+	      store addressess as value which are not allocated to any compile time variable
+   	      Those addresses are allocated dynamically while program runs(sometimes such 
+	      memory is called heap.). This can be done using malloc. It's syntax is:
+	    =>malloc(quantity,sizeof(datatype));
+	      for eg:int *a = malloc(5*sizeof(int));
+	    =>To deallocate that block of memory, C supports it by providing free function.
+	      for eg:free(a); 
+Funtion Pointers:Function is also stored in memory just like data, hence a function can also
+   		 can also be pointed by a pointer. This pointers are known as function 
+		 pointers. This pointers are limited to assignment and indirection, they 
+		 cannot arithmetic operations, because there is no ordering in storage
+		 of function pointer.
+		 =>Decleration:
+		   int(*fun_name)(parameters/formal paramerters or(int,float))
+		   fptr = function1,here we do not need to do &function, just like arrays.
+		   printf("%d",fptr(5));
+--------------------------------------------------------------------------------------------
+					*Stacks and Heaps*
+->Stack stores local variables of a function and cannot be accessed by another function.
+->As soon as a function returns a value then that function will be pop from memory stack.
+->Memory stack is limited and it can be overflow if the number of functions in the stack
+rises then its capacity.
+Heap(Free Store):Size not fixed, can be expanded upto virtual memory of the computer.
+New operator is used to allocate memory in heap. For eg int *p = new int(), here p will be
+stored in stack as it is a local variable, which in turn will point to a memory allocated in 
+heap. In simple words the variable will be declared in stack but the space will be
+allocated in heap. 
+->In dynamic memory allocation we need to manually allocate and deallocate and the same
+concept is used in heap.
+the memory. "delete()" is used to deallocate the memory allocated manually.
+->Dangling pointer: The pointer which keeps pointing to a memory address in heap(from stack)
+after that memory is deallocated by user manually that means now this pointer will point to
+a random/garbage value in memory. 
+->The solution to this is to reuse this pointer, by assigning it to the new variable. 
+for eg:
+	int *p=new int();//allocate memory in heap
+	*p=10;
+	delete(p);deallocate memory, now the pointer becomes dangling pointer.
+	p = new int[4]//Solution to a dangling pointer
+	delete[]p; //delete the array declared in heap
+	p=null; //another solution to dangling pointer by assigning it null value
+For more refrence: https://www.youtube.com/watch?v=bbym08gSWvQ&list=PLfqMhTWNBTe0b2nM6JHVCnAkhQRGiZMSJ&index=30
+
+--------------------------------------------------------------------------------------------
+
+					*Techniques of Parameter Passing*
+1.7.1Formal Parameters:The parameters which are includedin the function at the time of 
+		    decleration of function are known as formal parameters. Analogy can be 
+		    like, they are only declared for formalit that is why they are known as 
+		    formal parameters
+Actual Parameters: The parameter values which are passed to the callee function by the
+		     caller function are called actual parameters.
+
+				$1.7.2:Semantics of parameter passing$
+I)IN:Passes info to callee function from caller function. Formal arguments can take values 
+     values form actual arguments but cannot send back the values.
+II)OUT:Callee writes back values to the caller, formal argyments can send values from actual
+       arguments.
+III)IN/OUT:formal arguments can take as well as send values from actual arguments.
+
+					$1.7.4 Pass by Value$
+=>In semantics is used in this method
+=>Actual parameter values are used to initialize formal parameter values
+=>The formal parameter is like local variable whose scope is limited to the scope of the 
+  function.
+=>Changes made in formal parameters does not affect the values in caller function.
+=>The formal variables are allocated on stack just like local variables. This will not allow
+  to change actual arguments value.
+=>Disadvantage of call by value:
+	>Inefficiency in storage allocation
+	>Inefficiency in copying value
+	>Costly copy semantics of objects.
+
+					$Pass by Result$
+=>This approach uses reverse approach than Pass by Value, because in this method the formal
+  parameters are not initialized by actual arguments.
+=>Instead formal arguments needs to be initialized just like any local variable in a
+  function and the manipulated values of formal arguments will directly 
+
+						*1.10 Storage Classes*
+=>It determines the part of the memory where the varable or object is allocated the storage 
+  and for how long this allocation continues to exist. Along with that scope of the variable
+  is also define which specifies the visiblity of that variable which means, the area in 
+  which variable is called by name.
+
+					$Auto Storage Class$
+=>This is the default storage class in C. Auto variables are declared inside a function in
+which they are to be utilized. 
+=>They are destroyed automatically when function is exited. It can b
+
+--------------------------------------------------------------------------------------------
+Kadane's Algorithm: It is used to get the maximum sum of subarray. It
+uses only one loop that means the complexity is O(n). It suggests that 
+if there are negative elements in the array then they will not contribute
+in maximum sum of an subarray. So if we start iterating over the array
+by declaring a variable sum and keep summing the array values and at a 
+point if a sum becomes negative then we will reset the sum to 0. And 
+continue our iteration over the array. Else if the value is not zero,
+then after each iteration we will compare with the maxSum variable whose
+initial value is 0 and gets updated over the iterations.
+
+iterate over array
+	if sum is>0
+		max(maxSum,currentSum)
+	else
+		currentSum=0
+For eg the array is: -1,4,-7,9,7,-3, then we will iterate from arr[0]
+0+(-1)=-1->currentSum=0;
+0+4=4->CurrrentSum=4, max(maxSum,currentSum)=4->maxSum=4
+4-7=-3->Condition false->currentSum=0
+0+9=9->CurrrentSum=9, max(maxSum,currentSum)=9->maxSum=9
+9+7=16->CurrrentSum=16, max(maxSum,currentSum)=16->maxSum=16
+16-3=13->CurrrentSum=13, max(maxSum,currentSum)=16->maxSum=16
+--------------------------------------------------------------------------------------------
+Time Complexity:Time Complexity of an algorithm quantifies the amount of time taken by a
+program to run as a function of length of input.
+Three types: 
+	Worst Case(Big Oh) which is proportional to n
+	Best Case(Big Omega) constant
+	Avergage Case(Big Theta)=(n(n+1)/2)/n->(n+1)/2
+Refrence: https://www.youtube.com/watch?v=rq_rwnveh8s&list=PLfqMhTWNBTe0b2nM6JHVCnAkhQRGiZMSJ&index=17
+--------------------------------------------------------------------------------------------
+				$Subarray and Subsequence$
+=>Subarray: Continuous part of array
+	->Number of subarrays of an array with n elements=nC2+n=n*(n+1)/2
+=>A subsequence is a sequence that can be derived of an array by selecting zero or more
+  elements, without changing the order of the remaining elements.
+	->Number of sequences of an array with n elements=2^n.
+Note: every subarray is a sunsequence but every subsequence is not a subarray.
+
+	      
